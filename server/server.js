@@ -1,16 +1,8 @@
-require('dotenv').config();
-
-const TelegramBot = require('node-telegram-bot-api');
-const cloudinary = require('cloudinary').v2;
-
 const keyboard = require('./keyboard');
 const constants = require('./constants');
+const cloud = require('./Cloud');
 
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.CLOUD_API_KEY,
-  api_secret: process.env.CLOUD_API_SECRET,
-});
+const TelegramBot = require('node-telegram-bot-api');
 
 const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
@@ -24,11 +16,17 @@ bot.on('message', (msg) => {
   });
 });
 
-bot.on('callback_query', (query) => {
+bot.on('callback_query', async (query) => {
   const chatId = query.message.chat.id;
   let img = '';
 
   if (query.data === constants.query.randomMeme) {
-    console.log('random mem')
+    console.log('random mem');
+  }
+
+  if (query.data === constants.query.getMemesLength) {
+    const resources = await cloud.getImagesList();
+
+    bot.sendMessage(chatId, `В нашей базе ${resources.length} мемов`);
   }
 });
