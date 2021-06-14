@@ -18,11 +18,23 @@ class Cloud {
     });
   }
 
-  async getImagesList() {
-    return await cloudinary.search.expression(constants.cloudFolder)
+  getImagesList() {
+    return cloudinary.search.expression(constants.cloudFolder)
       .max_results(500)
       .execute()
       .then((result) => result.resources);
+  }
+
+  async getRandomImage() {
+    const imagesList = await this.getImagesList();
+    const randomIndex = this._randomNumber(0, imagesList.length);
+
+    return imagesList[randomIndex];
+  }
+
+  _randomNumber(min, max) {
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+    return Math.round(rand);
   }
 }
 
