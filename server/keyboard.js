@@ -3,11 +3,11 @@ const constants = require('./constants');
 module.exports.mainKeyboard = [
   [
     {
-      text: 'Случайный мем',
+      text: constants.msg.randomMeme,
       callback_data: constants.query.randomMeme,
     },
     {
-      text: 'Общее количество мемов',
+      text: constants.msg.totalAmountMemes,
       callback_data: constants.query.getMemesLength,
     },
   ],
@@ -29,7 +29,7 @@ module.exports.reviewKeyboard = (key, value) => (
         callback_data: constants.reactions.heart,
       },
       {
-        text: "Хочу еще",
+        text: constants.msg.showMore,
         callback_data: constants.query.randomMeme,
       }
     ],

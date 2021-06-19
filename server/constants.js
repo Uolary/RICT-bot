@@ -16,6 +16,10 @@ module.exports = {
   msg: {
     startMemBot: '/start',
     hello: 'Что ты хочешь?',
+    randomMeme: 'Случайный мем',
+    howIsIt: 'Ну как?',
+    totalAmountMemes: 'Общее количество мемов',
+    showMore: 'Хочу еще',
     wait: 'Ищем мем...',
     imagesLength: (length) => `В нашей базе ${length} мемов`,
     error: 'Непонятно, давай попробуем ещё раз?',
