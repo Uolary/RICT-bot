@@ -7,7 +7,7 @@ module.exports = [
       callback_data: constants.query.randomMeme,
     },
     {
-      text: 'Получить общее количество мемов',
+      text: 'Общее количество мемов',
       callback_data: constants.query.getMemesLength,
     },
   ],
